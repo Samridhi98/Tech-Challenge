@@ -1,0 +1,300 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300,500,600,700);
+
+* {
+  box-sizing: border-box;
+}
+*::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  z-index: 0;
+  background-color: #e7effb;
+  font-family: "Ubuntu";
+}
+body main {
+  width: 100%;
+  max-width: 960px;
+  margin: 50px auto;
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+
+div#loading {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: url(/static/ajax-loader.gif) no-repeat;
+    cursor: wait;
+    }
+.upload {
+  width: 520px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+}
+.upload h1, .upload p {
+  margin: 0;
+}
+
+.upload h4{
+  color: #3f3f3f;
+  margin: 0px;
+}
+
+
+.upload .upload-field {
+  width: 65%;
+  height: 100%;
+  left:17.5%;
+  background-color: white;
+  border-radius: 30px;
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #a66bbe;
+  box-shadow: -32px 17px 74px #878787
+  pointer-events: hover;
+  cursor: pointer;
+  -webkit-animation: fadeInUp 1s;
+          animation: fadeInUp 1s;
+}
+
+.upload h4{
+  color: #3f3f3f;
+  margin: 0px;
+  top:0px;
+}
+.upload .upload-field p{
+  color: #adabb0;
+  font-size: 10px;
+  margin-bottom: 10px; 
+  font-weight: 500;
+}
+
+.upload .upload-field .icon-field {
+  width: 80%;
+  height: 55%;
+  padding: 10px;
+  border: 1px dashed #2535ef;
+  border-radius: 20px;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s linear;
+  position: relative;
+  background-color: #f6fbff;
+}
+.upload .upload-field .icon-field:hover {
+  transform: scale(1.05);
+}
+.upload .upload-field .icon-field img{
+  width: 35%;
+  transition: transform 0.4s ease-in-out;
+}
+.upload .upload-field .icon-field img:hover {
+  transform: rotate(360deg);
+}
+
+.upload .upload-field .icon-field p {
+  font-size: 12px;
+  color: #adabb0;
+  margin-top: 5px;
+  font-weight: 200px;
+}
+#upload-input {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+
+}
+.upload .upload-status {
+  position: absolute;
+  display: none;
+  z-index: 5;
+  top: 50%;
+  left: 20%;
+  transform: translateY(-50%);
+  width: 60%;
+  padding: 25px 45px;
+  background-color: #fff;
+  box-shadow: 0px 10px 75px rgba(0, 0, 0, 0.5);
+}
+.card {
+  overflow: hidden;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: 0.25s box-shadow;
+}
+.card:focus, .card:hover {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card-inverse .card-img-overlay {
+  background-color: rgba(51, 51, 51, 0.85);
+  border-color: rgba(51, 51, 51, 0.85);
+}
+.upload .upload-status h1 {
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  margin: 15px 0px;
+  color: #2c3e50;
+}
+.upload .upload-status .file {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  margin: 8px 0px;
+}
+.upload .upload-status .file .file-description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.upload .upload-status .file .file-description .file-name {
+  color: #6e6e6e;
+  font-weight: 500;
+  text-overflow: ellipsis;
+ overflow: scroll;
+overflow-y: hidden;
+}
+.upload .upload-status .file .file-description .file-name::-webkit-scrollbar {
+    display: none;
+}
+.upload .upload-status .file .file-description .file-size {
+  font-size: 13px;
+  text-transform: lowercase;
+  color: #93e7b6;
+}
+.upload .upload-status .file .file-status {
+  width: 100%;
+  height: 5px;
+  margin-top: 10px;
+}
+.upload .upload-status .file .file-status .status-field {
+  background-color: #e9e9e9;
+  height: 5px;
+  width: 100%;
+  border-radius: 2.5px;
+  position: relative;
+  overflow: hidden;
+}
+.upload .upload-status .file .file-status .status-field .status-line {
+  transition: background-image 0.2s linear;
+  max-width: 100%;
+  min-width: 1%;
+  height: 100%;
+  background-color: #9b59b6;
+  background-image: linear-gradient(0deg, #8e44ad 50%, #9b59b6 50%);
+  -webkit-animation: loading 1.5s;
+          animation: loading 1.5s;
+}
+.upload .upload-status .file:hover .file-status .status-field .status-line {
+  background-image: linear-gradient(0deg, #d35400 50%, #e67e22 50%);
+}
+.upload .upload-status form {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  display: block;
+}
+.upload .upload-status .f{
+  width: 100%;
+  height: 50px;
+  position: relative;
+  display: block;
+}
+form input[type=text] {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  height: 40px;
+  border: 0;
+  outline: 0;
+  padding: 10px 10px;
+  padding-right: 0px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+form input[type=text]:focus, form input[type=text]:active {
+  border: 1px solid #9b59b6;
+  outline: 0;
+}
+form input[type=submit] {
+  background-color: #9b59b6;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  position: relative;
+  margin-top: 2px;
+  height: 36px;
+  width: 80px;
+  top: 0;
+  right: 0;
+  transition: transform 0.15s ease-in-out, box-shadow 0.35s linear, height 0s linear, margin-top 0s linear, width 0s linear;
+  transform: translateX(25px);
+  box-shadow: 0px 5px 15px rgba(142, 68, 173, 0.8);
+}
+form input[type=submit]:active, form input[type=submit]:focus {
+  border: 0;
+  outline: 0;
+}
+form input[type=submit].focus-out {
+  transform: translateX(0px);
+  box-shadow: 0px 5px 15px transparent;
+}
+form input[type=submit]:hover {
+  height: 40px;
+  margin-top: 0px;
+  width: 80px;
+}
+
+@-webkit-keyframes loading {
+  from {
+    max-width: 0%;
+  }
+  20% {
+    max-width: 40%;
+  }
+  60% {
+    max-width: 60%;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+@keyframes loading {
+  from {
+    max-width: 0%;
+  }
+  20% {
+    max-width: 40%;
+  }
+  60% {
+    max-width: 60%;
+  }
+  to {
+    max-width: 100%;
+  }
+}

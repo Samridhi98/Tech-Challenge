@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Encoding Challenge</title>
+  <title> Upload field </title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://raw.github.com/daneden/animate.css/master/animate.css'><link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css'><link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<main>
+  <form method=post enctype=multipart/form-data>
+  <div class="upload">
+
+    <div class="upload-field">
+      <h4>Upload your files</h4><p>The file should only be csv</p>
+      <div class="icon-field"><img src="https://image.flaticon.com/icons/png/512/2965/2965335.png">
+        <input type=file id="upload-input" name=file multiple>
+        <label for="upload-input" style="cursor: pointer; display: none;">Filename</label>
+        <p>Drag and drop your files here</p>
+        
+      </div>
+
+    </div>
+    <div class="upload-status">
+    </div>
+  </div>
+</form>
+</main>
+<!-- partial -->
+<script>
+  var input = document.getElementById( 'upload-input' );
+
+var card=document.getElementsByClassName('upload-status')
+input.addEventListener( 'change', showStatusCard );
+function showStatusCard( event ) {
+  
+  card[0].style.display='block';
+}
+input.addEventListener( 'change', showFileName );
+
+function showFileName( event ) {
+  card[0].innerHTML+="<h6> Uploaded files </h6>"
+  // the change event gives us the input it occurred in 
+  var input = event.srcElement;
+  var i=0;
+  for(i=0;i<input.files.length;i++)
+  {
+    var fileName = input.files[i].name;
+    card[0].innerHTML+="<div class=file><div class=file-description><div class=file-name>"+fileName+"</div><div class=file-size>"+input.files[i].size/1000000+"MB</div></div><div class=file-status><div class=status-field><div class=status-line style=width: #{status}%></div></div></div>";
+  }
+  card[0].innerHTML+="<div id='loading'></div><div id='content'><input class=focus-out type=submit value=Process id=upload-btn name=upload onclick='loading();'/></div>"
+}
+
+
+
+</script>
+<script type="text/javascript">// <![CDATA[
+        var card=document.getElementsByClassName('upload-status')
+        function loading(){
+        	window.alert("Thanks! Your file will be downloaded shortly!")
+            }
+// ]]></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
